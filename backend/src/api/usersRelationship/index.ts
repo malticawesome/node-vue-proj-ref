@@ -1,0 +1,30 @@
+export default (app) => {
+  app.post(
+    `/tenant/:tenantId/users-relationship`,
+    require('./usersRelationshipCreate').default,
+  );
+  app.put(
+    `/tenant/:tenantId/users-relationship/:id`,
+    require('./usersRelationshipUpdate').default,
+  );
+  app.post(
+    `/tenant/:tenantId/users-relationship/import`,
+    require('./usersRelationshipImport').default,
+  );
+  app.delete(
+    `/tenant/:tenantId/users-relationship`,
+    require('./usersRelationshipDestroy').default,
+  );
+  app.get(
+    `/tenant/:tenantId/users-relationship/autocomplete`,
+    require('./usersRelationshipAutocomplete').default,
+  );
+  app.get(
+    `/tenant/:tenantId/users-relationship`,
+    require('./usersRelationshipList').default,
+  );
+  app.get(
+    `/tenant/:tenantId/users-relationship/:id`,
+    require('./usersRelationshipFind').default,
+  );
+};
