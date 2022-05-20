@@ -28,6 +28,10 @@ export default class SequelizeRepository {
     return (options && options.currentUser) || { id: null };
   }
 
+  static getCurrentUserRoles(currentUser): Array<any> {
+    return currentUser.tenants[0].dataValues.roles;
+  }
+
   /**
    * Returns the tenant if it exists on the options.
    */

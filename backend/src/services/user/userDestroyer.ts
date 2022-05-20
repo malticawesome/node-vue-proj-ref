@@ -5,6 +5,7 @@ import assert from 'assert';
 import Error400 from '../../errors/Error400';
 import Plans from '../../security/plans';
 import { IServiceOptions } from '../IServiceOptions';
+import UsersRelationshipRepository from "../../database/repositories/usersRelationshipRepository";
 
 /**
  * Handles removing the permissions of the users.
@@ -64,7 +65,7 @@ export default class UserDestroyer {
       id,
       this.options,
     );
-
+    await UsersRelationshipRepository.destroyRelationship(user, this.options);
     await TenantUserRepository.destroy(
       this.options.currentTenant.id,
       user.id,

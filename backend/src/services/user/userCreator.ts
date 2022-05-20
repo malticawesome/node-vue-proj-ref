@@ -5,6 +5,7 @@ import SequelizeRepository from '../../database/repositories/sequelizeRepository
 import TenantUserRepository from '../../database/repositories/tenantUserRepository';
 import { tenantSubdomain } from '../tenantSubdomain';
 import { IServiceOptions } from '../IServiceOptions';
+import UsersRelationshipRepository from "../../database/repositories/usersRelationshipRepository";
 export default class UserCreator {
   options: IServiceOptions;
   transaction;
@@ -106,6 +107,7 @@ export default class UserCreator {
         },
       );
     }
+    await UsersRelationshipRepository.createRelationship(user, this.options);
 
     const isUserAlreadyInTenant = user.tenants.some(
       (userTenant) =>

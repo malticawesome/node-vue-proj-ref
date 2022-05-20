@@ -123,7 +123,7 @@ class Permissions {
       },
       logImport: {
         id: 'logImport',
-        allowedRoles: [roles.admin, roles.consultant, roles.client],
+        allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
       },
       logCreate: {
@@ -144,7 +144,7 @@ class Permissions {
       },
       logDestroy: {
         id: 'logDestroy',
-        allowedRoles: [roles.admin, roles.consultant, roles.client],
+        allowedRoles: [roles.admin],
         allowedPlans: [plans.free, plans.growth, plans.enterprise],
         allowedStorage: [
 
