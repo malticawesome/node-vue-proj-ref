@@ -301,11 +301,16 @@ class LogRepository {
         }
 
         let currentUserRoles = SequelizeRepository.getCurrentUserRoles(currentUser);
-        if (!currentUserRoles.includes("admin")) {
+        if (currentUserRoles.includes("consultant")) {
             let userRelationshipIds = await UsersRelationshipRepository
                 .fetchIdsOfRelatedUsers(options);
             whereAnd.push({
                 ['createdById']: userRelationshipIds,
+            });
+        }
+        if (currentUserRoles.includes("client")) {
+            whereAnd.push({
+                ['createdById']: currentUser.id,
             });
         }
         const where = {[Op.and]: whereAnd};
